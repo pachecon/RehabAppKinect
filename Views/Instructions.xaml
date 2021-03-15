@@ -1,0 +1,63 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    IsTabStop="false"
+    x:Class="RehabTest5.Instructions"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns= "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RehabTest5"
+    xmlns:common="using:HealthApp.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- Source="{Binding Items}"-->
+       <CollectionViewSource
+            x:Name="instructionViewSource"
+           
+            d:Source="{Binding Instruction, 
+              Source={d:DesignInstance Type=local:ItemDetailVM, IsDesignTimeCreatable=True}}" />
+    </Page.Resources>
+
+    <Grid x:Name="RootPanel"
+        Background="LightBlue" Opacity=".75" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Border Background="White" Margin="20">
+            <Grid Background="AliceBlue" Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="0.9*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" x:Name="TitleBlock" Text="{Binding Title}" Opacity="3" Foreground="ForestGreen"  FontSize="36" Margin="32" HorizontalAlignment="Center"/>
+                <GridView Grid.Row="1" x:Name="InstructionGridView" 
+                          ItemsSource="{Binding Instruction}" SelectionMode="None">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel MinHeight="400">
+                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="30" Foreground="OrangeRed"/>
+                                <Image x:Name="imgInstruction" Source="{Binding Image}" MinWidth="200" MaxHeight="300" />
+                                <TextBlock Text="{Binding FinalJoint1}" HorizontalAlignment="Center" FontSize="25" Foreground="OrangeRed"/>
+                                <TextBlock Text="{Binding FinalJoint2}" HorizontalAlignment="Center" FontSize="25" Foreground="OrangeRed"/>
+                             </StackPanel>
+                            
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                    
+                </GridView>
+                
+                <Button Grid.Row="2" Click="CloseButton_Click" HorizontalAlignment="Right" Padding="8" BorderBrush="OrangeRed" Margin="0,32,32,32" Foreground="OrangeRed"
+                        Width="310" Height="65">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Close" FontSize="28" FontStretch="Condensed"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</common:LayoutAwarePage>

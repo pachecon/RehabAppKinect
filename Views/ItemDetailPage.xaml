@@ -1,0 +1,593 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="RehabTest5.ItemDetailPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RehabTest5"
+    xmlns:data="using:RehabTest5.Data"
+    xmlns:common="using:HealthApp.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:RehabTest5"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource
+            x:Name="itemsViewSource"
+            Source="{Binding Items}"
+            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:ResourceDataSource, IsDesignTimeCreatable=True}}"/>
+
+        <!-- Style for the Skeleton Tracking -->
+        <Style TargetType="Ellipse" >
+            <Setter Property="Height" Value="5" />
+            <Setter Property="Stroke" Value="Black"/>
+            <Setter Property="Width" Value="5" />
+            <Setter Property="Fill" Value="Orange" />
+        </Style>
+
+        <!-- Style for the TextBlock -->
+        <Style TargetType="TextBlock" >
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Width" Value="Auto" />
+
+        </Style>
+
+        <!-- Animation -->
+        <Storyboard x:Name="Animation1">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image2">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:9">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:10">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image3">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:9">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:15">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image4">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:14">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:15">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:20">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image5">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:19">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:20">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image6">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:19">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:20">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Image1">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:28">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:10" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:14" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:15" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image4">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:14" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:15" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:19" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:20" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:19" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:20" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:25" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:26" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="Image6">
+                <EasingDoubleKeyFrame KeyTime="0" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:19" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:20" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:25" Value="90"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:26" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:28" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+        <Grid  Grid.Column="0" Grid.Row="0" Style="{StaticResource LayoutRootStyle}" Margin="0,2,0,152" Grid.RowSpan="2">
+
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF15C5F9" Offset="0.235"/>
+                    <GradientStop Color="#FFF6F9F5" Offset="0.944"/>
+                    <GradientStop Color="White" Offset="0.983"/>
+                    <GradientStop Color="#FF15C5F9" Offset="0.002"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Back button and page title -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!-- <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" Foreground="Black"/>
+                -->
+                <Button x:Name="backButton" Click="GoBack" Style="{StaticResource BackButtonStyle}" Foreground="Black"/>
+                <TextBlock x:Name="pageTitle" Grid.Column="1" 
+                           Style="{StaticResource PageHeaderTextStyle}" FontFamily="Arial Narrow" 
+                           Foreground="White"  Text="Exercise"  />
+
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="500*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Row="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Instruction Button and TextBlock to display the Information of the Angle-->
+                    <!-- 1. Column angle information -->
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Grid Grid.Row="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock  Grid.Row="0" Grid.Column="0" Text="Angle" HorizontalAlignment="Right"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="AngleTitle1" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="1" Grid.Column="2" x:Name="JointAngle1" HorizontalAlignment="Left"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" x:Name="AngleTitle2" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" x:Name="JointAngle2" HorizontalAlignment="Left"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" x:Name="AngleTitle3" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="3" Grid.Column="2" x:Name="JointAngle3" HorizontalAlignment="Left"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" x:Name="AngleTitle4" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="5" Grid.Column="2" x:Name="JointAngle4" HorizontalAlignment="Left"/>
+
+
+                        </Grid>
+                    </Grid>
+
+
+
+                    <!-- 2. Column skeleton and deep image -->
+                    <Grid  Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- the Image to display the Skeleton Tracking-->
+                        <!-- <Grid  Grid.Row="0" x:Name="Skeleton" Width="426" Height="320" VerticalAlignment="Top" HorizontalAlignment="Center"> -->
+                        <Grid  Grid.Row="0" x:Name="Skeleton" Width="640" Height="480" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Canvas Grid.RowSpan="2" Width="640" Height="480" >
+                                <!--   <Canvas Grid.RowSpan="2" Width="426" Height="320" >-->
+                                <Ellipse   Name="headEllipse"/>
+                                <Ellipse   Name="shoulderEllipse" />
+                                <Ellipse   Name="spineEllipse" />
+                                <Ellipse   Name="lHandEllipse" />
+                                <Ellipse   Name="rShoulderEllipse" />
+                                <Ellipse   Name="lShoulderEllipse"  />
+                                <Ellipse   Name="rElbowEllipse"  />
+                                <Ellipse   Name="lElbowEllipse" />
+                                <Ellipse   Name="rWristEllipse"  />
+                                <Ellipse   Name="lWristEllipse"  />
+                                <Ellipse   Name="rHipEllipse" />
+                                <Ellipse   Name="lHipEllipse"  />
+                                <Ellipse   Name="rKneeEllipse"  />
+                                <Ellipse   Name="lKneeEllipse"  />
+                                <Ellipse   Name="rAnkleEllipse"  />
+                                <Ellipse   Name="lAnkleEllipse"  />
+                                <Ellipse   Name="rHandEllipse"  />
+                                <Ellipse   Name="hipEllipse" />
+                                <Ellipse   Name="rFootEllipse" />
+                                <Ellipse   Name="lFootEllipse" />
+                            </Canvas>
+                            <Canvas x:Name="SkeletonCanvas" Width="640" Height="480">
+                                <!-- <Canvas x:Name="SkeletonCanvas" Width="426" Height="320">-->
+                                <Image x:Name="imgSkeleton"/>
+                            </Canvas>
+                        </Grid>
+
+                        <!-- Display the Animation and Depth Image-->
+                        <Grid Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Bottom"  Background="Black" d:IsHidden="True">
+                            <Image  x:Name="imgDepth" Height="240" Width="320" />
+                        </Grid>
+
+                    </Grid>
+
+                    <!-- 3. Column Amimation and help -->
+                    <Grid  Grid.Column="2" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Display the Animation -->
+                        <Grid  Grid.Row="0" >
+
+                            <!-- Freeze Image -->
+                            <Image  x:Name="freeze" VerticalAlignment="Bottom" Height="300" Source="ms-appx:///Assets/Images/upperLimb/upperLevel1/Arms1.png " />
+
+                            <!-- Canvas for the images for the Animation -->
+                            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                                <Canvas HorizontalAlignment="Left" x:Name="canvas">
+                                    <Canvas.Projection>
+                                        <PlaneProjection/>
+                                    </Canvas.Projection>
+                                    <Image x:Name="imgInteractive" Stretch="UniformToFill" >
+                                        <Image.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Image.RenderTransform>
+                                        <Image.Projection>
+                                            <PlaneProjection/>
+                                        </Image.Projection>
+                                    </Image>
+                                </Canvas>
+                                <Canvas HorizontalAlignment="Left" x:Name="canvas1">
+                                    <Canvas.Projection>
+                                        <PlaneProjection/>
+                                    </Canvas.Projection>
+                                    <Image x:Name="imgInteractive2"  Stretch="UniformToFill" VerticalAlignment="Bottom"  >
+                                        <Image.Projection>
+                                            <PlaneProjection/>
+                                        </Image.Projection>
+                                    </Image>
+                                </Canvas>
+                                <Canvas HorizontalAlignment="Left"  x:Name="canvas2">
+                                    <Canvas.Projection>
+                                        <PlaneProjection/>
+                                    </Canvas.Projection>
+                                    <Image x:Name="imgInteractive3" Stretch="UniformToFill" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+                                        <Image.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Image.RenderTransform>
+                                        <Image.Projection>
+                                            <PlaneProjection/>
+                                        </Image.Projection>
+                                    </Image>
+                                </Canvas>
+                                <Canvas HorizontalAlignment="Left"  x:Name="canvas3">
+                                    <Canvas.Projection>
+                                        <PlaneProjection/>
+                                    </Canvas.Projection>
+                                    <Image x:Name="imgInteractive4"  Stretch="UniformToFill" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+                                        <Image.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Image.RenderTransform>
+                                        <Image.Projection>
+                                            <PlaneProjection/>
+                                        </Image.Projection>
+                                    </Image>
+                                </Canvas>
+                            </Grid>
+                            <Grid>
+                                <!-- For loading the images for the Animation. Total of images: 6 -->
+                                <Image x:Name="Image1" Height="auto">
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                                <Image x:Name="Image2" Height="auto" >
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                                <Image x:Name="Image3"  Height="auto" >
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                                <Image x:Name="Image4" Height="auto" >
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                                <Image x:Name="Image5" Height="auto" >
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                                <Image x:Name="Image6" Height="auto">
+                                    <Image.Projection>
+                                        <PlaneProjection/>
+                                    </Image.Projection>
+                                </Image>
+                            </Grid>
+                        </Grid>
+
+                        <!-- Text for showing the remaining number of repetitions -->
+                        <TextBlock x:Name="countingRepetitions" Grid.Row="1" TextWrapping="Wrap" Foreground="Black"/>
+
+                        <!-- Help Button -->
+                        <Button x:Name="button2" Content="Help" Grid.Row="2" 
+                         HorizontalAlignment="Center"  VerticalAlignment= "Top" 
+                         Width="160" Height="74"
+                         FontFamily="Arial Narrow" FontSize="48" Foreground="Black"  FontWeight="Normal" Click="Instructions" >
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFF9E734"/>
+                                    <GradientStop Color="#FFF5F9EC" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <VisualStateManager.VisualStateGroups>
+
+                <!-- Visual states reflect the application's view state -->
+                <VisualStateGroup x:Name="ApplicationViewStates">
+                    <VisualState x:Name="FullScreenLandscape"/>
+                    <VisualState x:Name="Filled"/>
+
+                    <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                    <VisualState x:Name="FullScreenPortrait">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+
+                    <!-- The back button and title have different styles when snapped -->
+                    <VisualState x:Name="Snapped">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+
+        <Grid  Grid.Column="0" Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FF15F6F9" Offset="0.457"/>
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF54F8FA" Offset="0.202"/>
+                    <GradientStop Color="#FF0C9193" Offset="0.745"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid  Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Image  Source="ms-appx:/Assets/dliver.png" VerticalAlignment="Top" Grid.Row="1"/>
+            </Grid>
+
+            <TextBlock  Grid.Column="3" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="16" FontFamily="Arial Narrow"> © Fraunhofer IBMT</TextBlock>
+            <Button x:Name="button" Content="Done" Grid.Column="2" 
+                    HorizontalAlignment="Center"  VerticalAlignment= "center" 
+                    Width="400" Height="100"
+                    FontFamily="Arial Narrow" FontSize="48" Foreground="Black"  FontWeight="Normal" Click="buttonClick" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA29696"/>
+                        <GradientStop Color="#FFF9ECEC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+    </Grid>
+
+</common:LayoutAwarePage>
